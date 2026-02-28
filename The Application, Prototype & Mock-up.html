@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI-Health AR Dashboard</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #ffffff; margin: 0; padding: 20px; }
+        .header { text-align: center; padding: 10px; border-bottom: 2px solid #00ffcc; margin-bottom: 20px; }
+        .container { display: flex; gap: 20px; }
+        .panel { background: #1e1e1e; padding: 20px; border-radius: 10px; flex: 1; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .ar-view { background: #000; height: 300px; border: 2px dashed #00ffcc; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;}
+        .ar-text { color: #00ffcc; font-weight: bold; z-index: 2; }
+        .vitals { font-size: 1.2em; line-height: 1.8; }
+        .alert { background: #ff4444; color: white; padding: 10px; border-radius: 5px; display: none; font-weight: bold; text-align: center; margin-top: 15px;}
+        button { background: #00ffcc; color: #000; border: none; padding: 10px 20px; font-size: 1em; cursor: pointer; border-radius: 5px; font-weight: bold; width: 100%; margin-top: 10px;}
+        button:hover { background: #00ccaa; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🩺 AI-Driven Health & AR Platform</h1>
+        <p>Live Remote Patient Monitoring System</p>
+    </div>
+
+    <div class="container">
+        <div class="panel">
+            <h3>🔴 Live AR Camera Feed</h3>
+            <div class="ar-view" id="ar-screen">
+                <span class="ar-text">[ AR OVERLAY ACTIVE: Awaiting Scan ]</span>
+            </div>
+            <button onclick="simulateScan()">Scan Patient Marker</button>
+        </div>
+
+        <div class="panel">
+            <h3>📊 AI Predictive Analysis</h3>
+            <div class="vitals">
+                <p><strong>Heart Rate:</strong> <span id="hr">--</span> bpm</p>
+                <p><strong>Blood Pressure:</strong> <span id="bp">--/--</span> mmHg</p>
+                <p><strong>SpO2:</strong> <span id="spo2">--</span> %</p>
+            </div>
+            <div class="alert" id="ai-alert">🚨 AI ALERT: Anomaly Detected in Vitals! Immediate remote consultation advised.</div>
+            <button onclick="runAI()">Run AI Diagnostics</button>
+        </div>
+    </div>
+
+    <script>
+        function simulateScan() {
+            document.getElementById('ar-screen').style.background = "linear-gradient(45deg, #1a2a6c, #11998e, #38ef7d)";
+            document.querySelector('.ar-text').innerText = "[ Patient ID: #7849 Linked ]";
+            document.getElementById('hr').innerText = "75";
+            document.getElementById('bp').innerText = "120/80";
+            document.getElementById('spo2').innerText = "98";
+            document.getElementById('ai-alert').style.display = "none";
+        }
+
+        function runAI() {
+            // Simulate sudden vital drop and AI alert
+            setTimeout(() => {
+                document.getElementById('hr').innerText = "135";
+                document.getElementById('hr').style.color = "#ff4444";
+                document.getElementById('bp').innerText = "160/100";
+                document.getElementById('bp').style.color = "#ff4444";
+                document.getElementById('ai-alert').style.display = "block";
+            }, 800);
+        }
+    </script>
+</body>
+</html>
